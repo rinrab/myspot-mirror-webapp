@@ -65,7 +65,7 @@
 <body>
     <main>
         <input type="email" placeholder="Enter your email..." id="email" />
-        <!-- <button onclick="toggleMainButton();">Toggle Main Button</button> -->
+        <button onclick="loginButtonClick();">Toggle Main Button</button>
     </main>
     <div id="viewport"></div>
     <div id="viewport-params-size"></div>
@@ -87,7 +87,7 @@
         Telegram.WebApp.MainButton.onClick(() => {
             //var email = document.getElementById("email").value;
             Telegram.WebApp.sendData("test");
-        });	
+        });
         Telegram.WebApp.MainButton.show();
 
         // Function to call showPopup API
@@ -114,6 +114,10 @@
                 Telegram.WebApp.MainButton.show();
             }
         };
+
+        function loginButtonClick() {
+            Telegram.WebApp.sendData("test");
+        }
 
         function setViewportData() {
             var sizeEl = document.getElementById('viewport-params-size');
