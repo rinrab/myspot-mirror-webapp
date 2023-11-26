@@ -90,6 +90,8 @@
     <script>
         Telegram.WebApp.ready();
 
+        document.getElementById("email").value == localStorage.getItem("email") || "";
+
         Telegram.WebApp.onEvent('themeChanged', function () {
             document.documentElement.className = Telegram.WebApp.colorScheme;
         });
@@ -99,10 +101,12 @@
         });
 
         Telegram.WebApp.MainButton.onClick(() => {
-            Telegram.WebApp.sendData(JSON.stringify({
-                email: document.getElementById("email").value,
-                password: document.getElementById("password").value,
-            }));
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            localStorage.setItem("email", email);
+
+            Telegram.WebApp.sendData(JSON.stringify({ email, password }));
         });
         Telegram.WebApp.MainButton.show();
 
