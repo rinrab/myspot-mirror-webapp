@@ -78,10 +78,11 @@
 
 <body>
     <main>
-        <div>
+        <form id="form" action="#">
             <input type="email" placeholder="Enter your email..." id="email" />
             <input type="password" placeholder="Enter your password..." id="password" />
-        </div>
+            <input type="submit" style="visibility: collapse;">
+        </form>
     </main>
     <div id="viewport"></div>
     <div id="viewport-params-size"></div>
@@ -91,6 +92,10 @@
         Telegram.WebApp.ready();
 
         document.getElementById("email").value = localStorage.getItem("email") || "";
+        document.getElementById("form").onsubmit = (ev) => {
+            ev.preventDefault();
+            login();
+        };
 
         Telegram.WebApp.onEvent('themeChanged', function () {
             document.documentElement.className = Telegram.WebApp.colorScheme;
@@ -100,14 +105,17 @@
             text: 'Login'
         });
 
-        Telegram.WebApp.MainButton.onClick(() => {
+        function login() {
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
 
             localStorage.setItem("email", email);
 
             Telegram.WebApp.sendData(JSON.stringify({ email, password }));
-        });
+        }
+
+        Telegram.WebApp.MainButton.onClick(login);
+
         Telegram.WebApp.MainButton.show();
 
         function setViewportData() {
