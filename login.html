@@ -90,7 +90,7 @@
     <script>
         Telegram.WebApp.ready();
 
-        document.getElementById("email").value == localStorage.getItem("email") || "";
+        document.getElementById("email").value = localStorage.getItem("email") || "";
 
         Telegram.WebApp.onEvent('themeChanged', function () {
             document.documentElement.className = Telegram.WebApp.colorScheme;
