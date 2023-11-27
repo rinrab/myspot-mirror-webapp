@@ -111,7 +111,8 @@
         });
 
         function login() {
-            if (document.getElementById("form").checkValidity()) {
+            form.reportValidity();
+            if (form.checkValidity()) {
                 var email = emailInput.value;
                 var password = passwordInput.value;
 
