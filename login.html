@@ -89,10 +89,15 @@
     <div id="viewport-params-expand"></div>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
+        var emailInput = document.getElementById("email");
+        var passwordInput = document.getElementById("password");
+        var form = document.getElementById("form");
+
         Telegram.WebApp.ready();
 
-        document.getElementById("email").value = localStorage.getItem("email") || "";
-        document.getElementById("form").onsubmit = (ev) => {
+        emailInput.value = localStorage.getItem("email") || "";
+
+        form.onsubmit = (ev) => {
             ev.preventDefault();
             login();
         };
@@ -107,8 +112,8 @@
 
         function login() {
             if (document.getElementById("form").checkValidity()) {
-                var email = document.getElementById("email").value;
-                var password = document.getElementById("password").value;
+                var email = emailInput.value;
+                var password = passwordInput.value;
 
                 localStorage.setItem("email", email);
 
@@ -137,7 +142,6 @@
         Telegram.WebApp.onEvent('themeChanged', function () {
             document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
         });
-
     </script>
 </body>
 
