@@ -79,8 +79,8 @@
 <body>
     <main>
         <form id="form" action="#">
-            <input type="email" placeholder="Enter your email..." id="email" />
-            <input type="password" placeholder="Enter your password..." id="password" />
+            <input type="email" required placeholder="Enter your email..." id="email" />
+            <input type="password" required placeholder="Enter your password..." id="password" />
             <input type="submit" style="visibility: collapse;">
         </form>
     </main>
@@ -106,12 +106,14 @@
         });
 
         function login() {
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
+            if (document.getElementById("form").checkValidity()) {
+                var email = document.getElementById("email").value;
+                var password = document.getElementById("password").value;
 
-            localStorage.setItem("email", email);
+                localStorage.setItem("email", email);
 
-            Telegram.WebApp.sendData(JSON.stringify({ email, password }));
+                Telegram.WebApp.sendData(JSON.stringify({ email, password }));
+            }
         }
 
         Telegram.WebApp.MainButton.onClick(login);
